@@ -16,6 +16,7 @@ import {
 } from '../../assets';
 import './homePage.css';
 import { Link } from 'react-router-dom';
+import Gap from '../../components/gap/Gap';
 
 const HomePage = () => {
   const { Text } = Typography;
@@ -43,6 +44,7 @@ const HomePage = () => {
       </div>
       <div className="our-perfume">
         <h1>OUR PERFUME</h1>
+        <Gap height={20}/>
         <Row className="zoom-img">
           <Col span={8}>
             <Link to="/second-skin">
