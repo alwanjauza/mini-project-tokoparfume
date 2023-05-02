@@ -1,0 +1,11 @@
+.Terms-conditions {
+    margin: 40px 250px 40px 250px;
+}
+
+.Terms-conditions h1{
+    text-align: center;
+}
+
+.Terms-conditions li, h4 {
+    text-align: justify;
+}

@@ -125,6 +125,19 @@ const RegisterPage = () => {
                 placeholder="Password"
               />
             </Form.Item>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your password again!',
+                },
+              ]}
+            >
+              <Input.Password
+                prefix={<LockOutlined />}
+                placeholder="Re-Password"
+              />
+            </Form.Item>
             <Button
               type="primary"
               htmlType="submit"

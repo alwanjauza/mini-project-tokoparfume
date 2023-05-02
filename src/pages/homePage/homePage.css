@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-top img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  line-height: 1;
+  margin: auto;
+  width: 100%;
+}
+
+.our-perfume{
+    margin: 100px 0 0 0;
+    text-align: center;
+}
+
+.zoom-img {
+    margin: 0 200px 0 200px;
+}
+
+.zoom-img img{
+    width: 300px;
+}
+
+.our-perfume Button{
+    margin: 50px 0 0 0;
+    padding: 10px 40px 30px 40px;
+    background-color: black;
+    color: white;
+    border-radius: 0;
+}
+
+.carousel-banner-bot {
+    margin: 100px 0 0 0;
+}
+
+.meet-layr {
+    margin: 100px 450px 100px 450px;
+    text-align: center;
+}
+
+.image-bot {
+    margin: 100px 0 0 0;
+    text-align: center;
+}
+
+.midnighthaze-zoom{
+    overflow: hidden;
+}
+
+.secondskin-zoom {
+    overflow: hidden;
+}
+
+.getnaked-zoom {
+    overflow: hidden;
+}
+
+.midnighthaze-zoom img{
+    transition: transform 10s ease;
+}
+
+.secondskin-zoom img{
+    transition: transform 10s ease;
+}
+
+.getnaked-zoom img{
+    transition: transform 10s ease;
+}
+
+.image-bot img{
+    width: 420px;
+}
+
+.midnighthaze-zoom:hover img{
+    transform: scale(1.5);
+}
+
+.secondskin-zoom:hover img{
+    transform: scale(1.5);
+}
+
+.getnaked-zoom:hover img{
+    transform: scale(1.5);
+}
+

@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.shop-page {
+    text-align: center;
+}
+
+.shop-page img {
+    width: 300px;
+}
+

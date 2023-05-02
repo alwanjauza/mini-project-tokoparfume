@@ -1,0 +1,8 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.scroll-view {
+    margin-left: 150px;
+    position: fixed;
+}
