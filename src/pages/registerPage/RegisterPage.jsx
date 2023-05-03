@@ -144,7 +144,7 @@ const RegisterPage = () => {
               loading={isRegisterLoading}
               block
             >
-              Register
+              Create My Account
             </Button>
           </Form>
         </Card>

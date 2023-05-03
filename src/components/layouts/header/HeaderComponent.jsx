@@ -2,6 +2,7 @@ import { Layout, Menu } from 'antd';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MENU_ITEM } from '../Constant';
+import './headerComponent.css'
 
 const HeaderComponent = () => {
   const path = window.location.pathname;
@@ -21,7 +22,7 @@ const HeaderComponent = () => {
       }}
     >
       <div className="header-wrapper">
-        <Link to="home">
+        <Link to="/">
           <div
             style={{
               float: 'left',

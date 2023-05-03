@@ -68,7 +68,7 @@ const HomePage = () => {
             <Text>Rp 249.000</Text>
           </Col>
         </Row>
-        <Button>VIEW ALL PRODUCT</Button>
+        <Link to='/shop'><Button>VIEW ALL PRODUCT</Button></Link>
       </div>
       <div className="carousel-banner-bot">
         <Carousel className="carousel-top" autoplay>

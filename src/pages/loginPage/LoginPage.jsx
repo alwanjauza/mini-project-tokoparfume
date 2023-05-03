@@ -76,15 +76,15 @@ const LoginPage = () => {
                 placeholder="Password"
               />
             </Form.Item>
-            <Text>Dont have any account?</Text><Link to='/register'>Sign up here</Link>
             <Button
               type="primary"
               htmlType="submit"
               loading={isRegisterLoading}
               block
             >
-              Login
+                
             </Button>
+            <Text>Dont have an account?</Text><Link to='/register'>Sign up here</Link>
           </Form>
         </Card>
       </div>

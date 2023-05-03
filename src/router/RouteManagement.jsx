@@ -11,6 +11,7 @@ import CreationPage from '../pages/creationPage/CreationPage';
 import FaqPage from '../pages/faqPage/FaqPage';
 import TermsConditionPage from '../pages/termsConditionsPage/TermsConditionPage';
 import RegisterPage from '../pages/registerPage/RegisterPage';
+import DashboardPage from '../pages/dashboardPage/DashboardPage';
 
 const RouteManagement = () => {
     const token = localStorage.getItem('token')
@@ -38,6 +39,7 @@ const RouteManagement = () => {
                         <Route path='/creation' element={<CreationPage/>} />
                         <Route path='/faq' element={<FaqPage/>} />
                         <Route path='/terms-conditions' element={<TermsConditionPage/>} />
+                        <Route path='/dashboard' element={<DashboardPage/>}/>
                     </Routes>
                 </LayoutComponent>
             )}

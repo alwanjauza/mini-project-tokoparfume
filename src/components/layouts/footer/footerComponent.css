@@ -1,0 +1,44 @@
+.footer {
+    background-color: #9d1c1f;
+}
+
+.footer-top{
+    margin: 50px 320px 30px 320px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-top Input{
+    margin: 0 10px 0 10px;
+    width: 480px;
+    height: 50px;
+    background-color: #9d1c1f;
+    border-radius: 0;
+}
+
+.footer-top Button {
+    height: 50px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 0;
+}
+
+.gap-line {
+    margin: 0;
+    padding: 0;
+    height: 1px;
+    background-color: #970709;
+}
+
+.footer-mid {
+    margin: 0 0 200px 100px;
+}
+
+.about-product {
+    padding-right: 40px;
+}
+
+.about-layr {
+    padding-left: 100px;
+}
