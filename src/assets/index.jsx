@@ -10,6 +10,7 @@ import SecondSkinRose from './img/SecondSkin-Rose.png'
 import GetNakedCarousel from './img/GetNaked-Carousel.png'
 import MidnightHazeCarousel from './img/MidnightHaze-Carousel.png'
 import SecondSkinCarousel from './img/SecondSkin-Carousel.png'
+import IconPerfume from './img/Icon.svg'
 
 export {
     GetNaked,
@@ -23,5 +24,6 @@ export {
     SecondSkinRose,
     GetNakedCarousel,
     MidnightHazeCarousel,
-    SecondSkinCarousel
+    SecondSkinCarousel,
+    IconPerfume
 }

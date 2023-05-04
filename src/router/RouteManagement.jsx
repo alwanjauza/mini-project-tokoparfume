@@ -12,6 +12,7 @@ import FaqPage from '../pages/faqPage/FaqPage';
 import TermsConditionPage from '../pages/termsConditionsPage/TermsConditionPage';
 import RegisterPage from '../pages/registerPage/RegisterPage';
 import DashboardPage from '../pages/dashboardPage/DashboardPage';
+import CheckoutPage from '../pages/checkoutPage/CheckoutPage';
 
 const RouteManagement = () => {
     const token = localStorage.getItem('token')
@@ -40,6 +41,7 @@ const RouteManagement = () => {
                         <Route path='/faq' element={<FaqPage/>} />
                         <Route path='/terms-conditions' element={<TermsConditionPage/>} />
                         <Route path='/dashboard' element={<DashboardPage/>}/>
+                        <Route path='/checkout' element={<CheckoutPage/>}/>
                     </Routes>
                 </LayoutComponent>
             )}
