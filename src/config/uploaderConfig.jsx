@@ -1,4 +1,4 @@
 export const uploaderConfig = {
-    upload_preset: "dbqsoenus",
+    upload_preset: "vycrofnc",
     api_key: "117835992895267",
 }

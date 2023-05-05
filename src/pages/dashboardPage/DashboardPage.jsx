@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './dashboardPage.css';
 import {
+  Button,
   Form,
   Image,
   Input,
@@ -9,6 +10,7 @@ import {
   Space,
   Table,
   Typography,
+  Upload,
   message,
 } from 'antd';
 import { useMutation, useQuery } from '@apollo/client';
@@ -22,7 +24,8 @@ import { useSingleUploader } from '../../hooks/useSingleUploader';
 import { INITIAL_TABLE_DATA } from './constant';
 import { uploaderConfig } from '../../config/uploaderConfig';
 import Gap from '../../components/gap/Gap';
-import { ImgCropProps } from 'antd-img-crop';
+import { UploadOutlined } from '@ant-design/icons';
+import LoadingComponents from '../../components/layouts/loadingComponents/LoadingComponents/LoadingComponents';
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -41,24 +44,24 @@ const DashboardPage = () => {
 
   // Image Change
   const onImageChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList)
-  }
+    setFileList(newFileList);
+  };
 
   // Image Preview
   const onImagePreview = async (file) => {
-    let src = file.url
+    let src = file.url;
     if (!src) {
-        src = await new Promise((resolve) => {
-            const reader = new FileReader()
-            reader.readAsDataURL(file.originFileObj)
-            reader.onload = () => resolve(reader.result)
-        })
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj);
+        reader.onload = () => resolve(reader.result);
+      });
     }
-    const image = new Image()
-    image.src = src
-    const imgWindow = window.open(src)
-    imgWindow?.document.write(image.outerHTML)
-  }
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow?.document.write(image.outerHTML);
+  };
 
   // GET DATA
   const {
@@ -100,12 +103,12 @@ const DashboardPage = () => {
   const TABLE_COLUMN = [
     {
       title: 'Product Image',
-      dataIndex: 'productPict',
-      key: 'productPict',
+      dataIndex: 'image',
+      key: 'image',
       render: (_, record, index) => (
         <Image
-          src={record.productPict}
-          alt={`productPict-${index}`}
+          src={record.image}
+          alt={`image-${index}`}
           style={{ height: '50px' }}
         />
       ),
@@ -140,7 +143,7 @@ const DashboardPage = () => {
             <Popconfirm
               title="Sure to delete?"
               arrow={false}
-              onConfirm={() => onDelete(record.id)}
+              onConfirm={() => onDelete(record.uuid)}
             >
               <a>Delete</a>
             </Popconfirm>
@@ -148,6 +151,19 @@ const DashboardPage = () => {
         ) : null,
     },
   ];
+
+  // Handle edit button
+  const handleEdit = (row_data) => {
+    setRowData(row_data)
+    setIsEdit(true)
+    setImage(row_data.image)
+    formProduct.setFieldValue({
+      productName: row_data.productName,
+      productPrice: row_data.productPrice,
+      ingredients: row_data.ingredients,
+      desc: row_data.desc,
+    })
+  }
 
   // Handle cancel button
   const handleCancel = () => {
@@ -160,7 +176,7 @@ const DashboardPage = () => {
   // Add data to table
   const onAdd = (values) => {
     const body = {
-      productPict: productPict,
+      image: image,
       ...values,
     };
     addProduct({
@@ -182,7 +198,7 @@ const DashboardPage = () => {
   // Delete data from table
   const onDelete = (row_id) => {
     deleteProduct({
-      variables: { id: row_id },
+      variables: { uuid: row_id },
       onError: (err) => {
         message.open({
           type: 'error',
@@ -194,13 +210,13 @@ const DashboardPage = () => {
 
   // Edit data from table
   const onEdit = (values) => {
-    const id = rowData.id;
+    const uuid = rowData.uuid;
     const body = {
-      productPict: productPict,
+      image: image,
       ...values,
     };
     updateProduct({
-      variables: { pk_columns: { id: id }, _set: { ...body } },
+      variables: { pk_columns: { uuid: uuid }, _set: { ...body } },
       onCompleted: () => {
         handleCancel();
       },
@@ -257,40 +273,117 @@ const DashboardPage = () => {
         }}
       >
         <Form.Item
-        name="productName"
-        label="Nama Produk"
-        rules={[
+          name="productName"
+          label="Nama Produk"
+          rules={[
             {
-                required: true,
-                message: "Please input product name!"
-            }
-        ]}>
-            <Input placeholder='Product Name' />
+              required: true,
+              message: 'Please input product name!',
+            },
+          ]}
+        >
+          <Input placeholder="Product Name" />
         </Form.Item>
 
         <Form.Item
-        name="productPrice"
-        label="Harga Produk"
-        rules={[
+          name="productPrice"
+          label="Harga Produk"
+          rules={[
             {
-                required: true,
-                message: "Please input product price!",
-                min: 1
-            }
-        ]}>
-            <InputNumber placeholder='Product Price' />
+              required: true,
+              message: 'Please input product price!',
+            },
+          ]}
+        >
+          <InputNumber placeholder="Product Price" />
         </Form.Item>
-      </Form>
 
-      <Form.Item
-      label="Product Image">
-        <ImgCropProps rotati/>
-      </Form.Item>
+        <Form.Item label="Product Image">
+          <Upload
+            showUploadList={false}
+            name="image"
+            maxCount={1}
+            onRemove={() => {
+              setImage('');
+            }}
+            customRequest={() => {}}
+            onChange={handleUpload}
+          >
+            <Button
+              icon={<UploadOutlined />}
+              type={!image ? 'dashed' : 'default'}
+            />
+          </Upload>
+
+          {isLoadingUpload ? (
+            <LoadingComponents />
+          ) : (
+            image && (
+              <div>
+                <Gap height={20} />
+                <Image
+                  src={image}
+                  alt="image"
+                  style={{
+                    height: '150px',
+                    borderRadius: '10px',
+                  }}
+                />
+              </div>
+            )
+          )}
+        </Form.Item>
+
+        <Form.Item
+          name="ingredients"
+          label="Ingredients"
+          rules={[
+            {
+              required: true,
+              message: 'Please input ingredients product!',
+            },
+          ]}
+        >
+          <TextArea rows={4} placeholder="Ingredients" />
+        </Form.Item>
+
+        <Form.Item
+          name="desc"
+          label="Deskripsi Produk"
+          rules={[
+            {
+              required: true,
+              message: 'Please input description product!',
+            },
+          ]}
+        >
+          <TextArea rows={4} placeholder="Description product" />
+        </Form.Item>
+
+        {isEdit ? (
+          <Space>
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loadingUpdateProduct}
+            >
+              Save
+            </Button>
+            <Button type="primary" onClick={handleCancel} danger>
+              Cancel
+            </Button>
+          </Space>
+        ) : (
+          <Button type="primary" htmlType="submit" loading={loadingAddProduct}>
+            Submit
+          </Button>
+        )}
+      </Form>
 
       <Gap height={20} />
 
       <Table
-        rowKey="id"
+        rowKey="uuid"
         columns={TABLE_COLUMN}
         dataSource={productData?.products}
         loading={isProductLoading || loadingDelete}

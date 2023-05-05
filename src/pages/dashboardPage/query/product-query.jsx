@@ -3,9 +3,9 @@ import { gql } from '@apollo/client';
 // Read data
 export const GET_PRODUCT = gql`
   query products {
-    products(order_by: { id: asc }) {
-      id
-      productPict
+    products(order_by: { time_stamp: asc }) {
+      uuid
+      image
       productName
       productPrice
       ingredients
@@ -18,7 +18,7 @@ export const GET_PRODUCT = gql`
 export const ADD_PRODUCT = gql`
   mutation products($object: products_insert_input!) {
     insert_products_one(object: $object) {
-      id
+      uuid
     }
   }
 `;
@@ -30,16 +30,16 @@ export const UPDATE_PRODUCT = gql`
     $_set: products_set_input!
   ) {
     update_products_by_pk(pk_columns: $pk_columns, _set: $_set) {
-      id
+      uuid
     }
   }
 `;
 
 // Delete data
 export const DELETE_PRODUCT = gql`
-  mutation products($id: uuid!) {
-    delete_products_by_pk(id: $id) {
-      id
+  mutation products($uuid: uuid!) {
+    delete_products_by_pk(uuid: $uuid) {
+      uuid
     }
   }
 `;
