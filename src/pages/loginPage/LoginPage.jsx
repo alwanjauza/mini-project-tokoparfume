@@ -82,7 +82,7 @@ const LoginPage = () => {
               loading={isRegisterLoading}
               block
             >
-                
+                Login
             </Button>
             <Text>Dont have an account?</Text><Link to='/register'>Sign up here</Link>
           </Form>
