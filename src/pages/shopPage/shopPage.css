@@ -1,13 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 .shop-page {
-    text-align: center;
+    padding: 50px 200px 50px 200px;
+    display: flex;
+    justify-content: space-between;
 }
-
-.shop-page img {
-    width: 300px;
-}
-

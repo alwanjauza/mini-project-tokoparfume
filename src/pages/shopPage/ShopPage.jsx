@@ -1,37 +1,45 @@
-import { Col, Row, Typography } from 'antd';
+import { Card, Col, Row, Typography } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GetNakedZoom, MidnightHazeZoom, SecondSkinZoom } from '../../assets';
 import './shopPage.css'
+import { useQuery } from '@apollo/client';
+import { GET_PRODUCT } from '../dashboardPage/query/product-query';
+
+const { Meta } = Card
 
 const ShopPage = () => {
     const { Text } = Typography
 
+    // GET DATA
+  const {
+    data: productData,
+    loading: isProductLoading,
+    error: productError,
+  } = useQuery(GET_PRODUCT);
+
     return (
         <>
         <div className='shop-page'>
-            
-        
-            <Link to="/second-skin">
-              <img src={SecondSkinZoom} alt="SecondSkin" />
-            </Link>
-            <h3>Second Skin</h3>
-            <Text>Rp 249.000</Text>
-
-
-            <Link to="/midnight-haze">
-              <img src={MidnightHazeZoom} alt="MidnightHaze" />
-            </Link>
-            <h3>Midnight Haze</h3>
-            <Text>Rp 249.000</Text>
-
-
-            <Link to="/get-naked">
-              <img src={GetNakedZoom} alt="GetNaked" />
-            </Link>
-            <h3>Get Naked</h3>
-            <Text>Rp 249.000</Text>
-
+          {productData?.products?.map((item, index) => (
+            <Row gutter={16}>
+            <Col span={8}>
+              <Card
+              hoverable
+              style={{
+                width: 240
+              }}
+              cover={<img alt={item.image} src={item.image} />}
+              key={index}
+              >
+                <Meta 
+                title={item.productName}
+                description={item.productPrice}
+                />
+              </Card>
+            </Col>
+          </Row>
+          ))}
         </div>
         </>
     );
