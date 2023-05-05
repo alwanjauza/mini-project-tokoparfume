@@ -1,0 +1,45 @@
+import { gql } from '@apollo/client';
+
+// Read data
+export const GET_PRODUCT = gql`
+  query products {
+    products(order_by: { id: asc }) {
+      id
+      productPict
+      productName
+      productPrice
+      ingredients
+      desc
+    }
+  }
+`;
+
+// Create data
+export const ADD_PRODUCT = gql`
+  mutation products($object: products_insert_input!) {
+    insert_products_one(object: $object) {
+      id
+    }
+  }
+`;
+
+// Update data
+export const UPDATE_PRODUCT = gql`
+  mutation product(
+    $pk_columns: products_pk_columns_input!
+    $_set: products_set_input!
+  ) {
+    update_products_by_pk(pk_columns: $pk_columns, _set: $_set) {
+      id
+    }
+  }
+`;
+
+// Delete data
+export const DELETE_PRODUCT = gql`
+  mutation products($id: uuid!) {
+    delete_products_by_pk(id: $id) {
+      id
+    }
+  }
+`;
