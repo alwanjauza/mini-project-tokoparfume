@@ -1,8 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .carousel-top img {
   display: block;
   height: auto;
@@ -73,6 +68,7 @@
 
 .image-bot img{
     width: 420px;
+    padding-bottom: 50px;
 }
 
 .midnighthaze-zoom:hover img{
