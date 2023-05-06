@@ -17,9 +17,18 @@ import {
 import './homePage.css';
 import { Link } from 'react-router-dom';
 import Gap from '../../components/gap/Gap';
+import { useQuery } from '@apollo/client';
+import { GET_PRODUCT } from '../dashboardPage/query/product-query';
 
 const HomePage = () => {
   const { Text } = Typography;
+
+    // GET DATA
+    const {
+      data: productData,
+      loading: isProductLoading,
+      error: productError,
+    } = useQuery(GET_PRODUCT);
 
   return (
     <>
@@ -45,28 +54,14 @@ const HomePage = () => {
       <div className="our-perfume">
         <h1>OUR PERFUME</h1>
         <Gap height={20}/>
-        <Row className="zoom-img">
-          <Col span={8}>
-            <Link to="/second-skin">
-              <img src={SecondSkinZoom} alt="SecondSkin" />
-            </Link>
-            <h3>Second Skin</h3>
-            <Text>Rp 249.000</Text>
-          </Col>
-          <Col span={8}>
-            <Link to="/midnight-haze">
-              <img src={MidnightHazeZoom} alt="MidnightHaze" />
-            </Link>
-            <h3>Midnight Haze</h3>
-            <Text>Rp 249.000</Text>
-          </Col>
-          <Col span={8}>
-            <Link to="/get-naked">
-              <img src={GetNakedZoom} alt="GetNaked" />
-            </Link>
-            <h3>Get Naked</h3>
-            <Text>Rp 249.000</Text>
-          </Col>
+        <Row className="zoom-img" gutter={[0, 40]}>
+          {productData?.products?.map((item, index) => (
+            <Col span={8} key={index}>
+              <img src={item.image} alt={item.image}/>
+              <h3>{item.productName}</h3>
+              <Text>{item.productPrice}</Text>
+            </Col>
+          ))}
         </Row>
         <Link to='/shop'><Button>VIEW ALL PRODUCT</Button></Link>
       </div>
