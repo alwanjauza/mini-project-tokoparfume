@@ -5,11 +5,14 @@ import { GetNakedZoom, MidnightHazeZoom, SecondSkinZoom } from '../../assets';
 import './shopPage.css';
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCT } from '../dashboardPage/query/product-query';
+import currency from 'currency.js';
 
 const { Meta } = Card;
 
 const ShopPage = () => {
   const { Text } = Typography;
+  const IDR = (value) =>
+    currency(value, { precision: 0, symbol: 'Rp ', separator: '.' });
 
   // GET DATA
   const {
@@ -22,20 +25,22 @@ const ShopPage = () => {
     <>
       <div className="shop-page">
         <Row gutter={[0, 40]}>
-          {productData?.products?.map((item, index) => (
-            <Col span={8} key={index}>
-              <Card
-                hoverable
-                style={{
-                  width: 240,
-                }}
-                cover={<img alt={item.image} src={item.image} />}
-              >
-                <Meta
-                  title={item.productName}
-                  description={item.productPrice}
-                />
-              </Card>
+          {productData?.products?.map((item) => (
+            <Col span={8} key={item.uuid}>
+              <Link to={`/shop/${item.uuid}`}>
+                <Card
+                  hoverable
+                  style={{
+                    width: 240,
+                  }}
+                  cover={<img alt={item.image} src={item.image} />}
+                >
+                  <Meta
+                    title={item.productName}
+                    description={IDR(item.productPrice).format()}
+                  />
+                </Card>
+              </Link>
             </Col>
           ))}
         </Row>
