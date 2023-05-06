@@ -14,16 +14,4 @@ export const MENU_ITEM = [
         label: <Link to='/our-story'>OUR STORY</Link>,
         key: '/our-story'
     },
-    {
-        label: <Link to='/loginPage'>
-            <Button
-            type="primary"
-            onClick={() => {
-                localStorage.removeItem('token')
-            }}>
-                LOGOUT
-            </Button>
-        </Link>,
-        key: '4'
-    }
 ]
