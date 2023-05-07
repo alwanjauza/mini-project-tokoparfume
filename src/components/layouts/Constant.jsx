@@ -15,7 +15,7 @@ export const MENU_ITEM = [
         key: '/our-story'
     },
     {
-        label: <Link to='/loginPage'>
+        label: <Link to='/login'>
             <Button
             type="primary"
             onClick={() => {
