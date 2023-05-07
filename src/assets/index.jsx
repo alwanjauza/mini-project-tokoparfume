@@ -11,6 +11,7 @@ import GetNakedCarousel from './img/GetNaked-Carousel.png'
 import MidnightHazeCarousel from './img/MidnightHaze-Carousel.png'
 import SecondSkinCarousel from './img/SecondSkin-Carousel.png'
 import IconPerfume from './img/Icon.svg'
+import WaLink from './img/wa-link.png'
 
 export {
     GetNaked,
@@ -25,5 +26,6 @@ export {
     GetNakedCarousel,
     MidnightHazeCarousel,
     SecondSkinCarousel,
-    IconPerfume
+    IconPerfume,
+    WaLink
 }
