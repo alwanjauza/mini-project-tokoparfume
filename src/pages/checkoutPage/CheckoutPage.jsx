@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './checkoutPage.css';
 import {
   Breadcrumb,
@@ -7,6 +7,7 @@ import {
   Form,
   Input,
   InputNumber,
+  Modal,
   Row,
   Tooltip,
   Typography,
@@ -16,55 +17,69 @@ import {
   HomeOutlined,
   ShoppingCartOutlined,
   InfoCircleOutlined,
-  LeftOutlined
+  LeftOutlined,
 } from '@ant-design/icons';
-import { IconPerfume } from '../../assets';
+import { IconPerfume, WaLink } from '../../assets';
 import Gap from '../../components/gap/Gap';
 
-
 const CheckoutPage = () => {
+  const [loading, setLoading] = useState(false)
+  const [open, setOpen] = useState(false)
   const { Text } = Typography;
   const [form] = Form.useForm();
   const { TextArea } = Input;
   const inputStyle = {
-    width: '95%'
-  }
+    width: '95%',
+  };
+  const showModal = () => {
+    setOpen(true);
+  };
+  const handleOk = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setOpen(false);
+    }, 1000);
+  };
+  const handleCancle = () => {
+    setOpen(false);
+  };
 
   return (
     <>
       <div className="checkout-page">
         <div className="head">
-        <img src={IconPerfume} alt="MyPerfume" />
-        <Gap height={10}/>
-        <Breadcrumb
-        className='breadcrumb'
-            separator='>'
-          items={[
-            {
-              href: '/',
-              title: <HomeOutlined />,
-            },
-            {
-              href: '/shop',
-              title: (
-                <>
-                  <ShoppingCartOutlined />
-                  <span>Choose Product</span>
-                </>
-              ),
-            },
-            {
-              href: '/checkout',
-              title: (
-                <>
-                  <Text>Shipping</Text>
-                </>
-              ),
-            },
-          ]}
-        />
+          <img src={IconPerfume} alt="MyPerfume" />
+          <Gap height={10} />
+          <Breadcrumb
+            className="breadcrumb"
+            separator=">"
+            items={[
+              {
+                href: '/',
+                title: <HomeOutlined />,
+              },
+              {
+                href: '/shop',
+                title: (
+                  <>
+                    <ShoppingCartOutlined />
+                    <span>Choose Product</span>
+                  </>
+                ),
+              },
+              {
+                href: '/checkout',
+                title: (
+                  <>
+                    <Text>Shipping</Text>
+                  </>
+                ),
+              },
+            ]}
+          />
         </div>
-        <Gap height={30}/>
+        <Gap height={30} />
         <h1>Shipping address</h1>
         <Form name="myForm" form={form} layout="vertical">
           <Row>
@@ -124,10 +139,30 @@ const CheckoutPage = () => {
             </Col>
           </Row>
           <div className="button-sec">
-          <Link to='/shop'><Text><LeftOutlined /> Return To Shop</Text></Link>
-          <a href="https://wa.link/w5w3ca" target='_blank'><Button>Continue to payment</Button></a>
+            <Link to="/shop">
+              <Text>
+                <LeftOutlined /> Return To Shop
+              </Text>
+            </Link>
+            <Button onClick={showModal}>Continue to payment</Button>
           </div>
         </Form>
+        <Modal
+              open={open}
+              title="Payment"
+              onOk={handleOk}
+              onCancel={handleCancle}
+              footer={[
+                <Button onClick={handleCancle}>
+                  Back
+                </Button>,
+                <a href="https://wa.link/fvglji" target="_blank">
+                  <Button>Continue to payment</Button>
+                </a>,
+              ]}
+            >
+              <img src={WaLink} alt='barcode' className='walink'/>
+            </Modal>
       </div>
     </>
   );
