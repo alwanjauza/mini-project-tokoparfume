@@ -125,7 +125,7 @@ const CheckoutPage = () => {
           </Row>
           <div className="button-sec">
           <Link to='/shop'><Text><LeftOutlined /> Return To Shop</Text></Link>
-          <a href="" target='_blank'><Button>Continue to payment</Button></a>
+          <a href="https://wa.link/w5w3ca" target='_blank'><Button>Continue to payment</Button></a>
           </div>
         </Form>
       </div>
