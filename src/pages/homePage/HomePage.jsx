@@ -19,9 +19,12 @@ import { Link } from 'react-router-dom';
 import Gap from '../../components/gap/Gap';
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCT } from '../dashboardPage/query/product-query';
+import currency from 'currency.js';
 
 const HomePage = () => {
   const { Text } = Typography;
+  const IDR = value =>
+  currency(value, {precision: 0, symbol: "Rp ", separator: "."})
 
     // GET DATA
     const {
@@ -59,7 +62,7 @@ const HomePage = () => {
             <Col span={8} key={index}>
               <img src={item.image} alt={item.image}/>
               <h3>{item.productName}</h3>
-              <Text>{item.productPrice}</Text>
+              <Text>{IDR(item.productPrice).format()}</Text>
             </Col>
           ))}
         </Row>
