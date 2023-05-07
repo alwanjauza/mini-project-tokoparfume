@@ -13,6 +13,7 @@ import TermsConditionPage from '../pages/termsConditionsPage/TermsConditionPage'
 import RegisterPage from '../pages/registerPage/RegisterPage';
 import DashboardPage from '../pages/dashboardPage/DashboardPage';
 import CheckoutPage from '../pages/checkoutPage/CheckoutPage';
+import ProductDetil from '../pages/shopPage/components/ProductDetil';
 
 const RouteManagement = () => {
     const token = localStorage.getItem('token')
@@ -36,6 +37,7 @@ const RouteManagement = () => {
                     <Routes>
                         <Route path='/' element={<HomePage/>} />
                         <Route path='/shop' element={<ShopPage/>} />
+                        <Route path='/shop/:uuid' element={<ProductDetil/>}/>
                         <Route path='/our-story' element={<StoryPage/>} />
                         <Route path='/creation' element={<CreationPage/>} />
                         <Route path='/faq' element={<FaqPage/>} />
