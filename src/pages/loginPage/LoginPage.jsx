@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import { Button, Card, Form, Input, Modal, Typography } from 'antd';
+import { Button, Card, Form, Input, Modal, Typography, Watermark } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { GET_PROFILE } from './query/login-query';
 import Gap from '../../components/gap/Gap';
 import { ADD_PROFILE } from '../registerPage/query/register-query';
 import './loginPage.css'
+import { IconPerfume } from '../../assets';
 
 const LoginPage = () => {
   const [form] = Form.useForm();
