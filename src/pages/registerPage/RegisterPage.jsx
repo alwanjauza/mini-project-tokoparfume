@@ -146,6 +146,7 @@ const RegisterPage = () => {
             >
               Create My Account
             </Button>
+            <Text>Already a user?</Text><Link to='/login'>Login</Link>
           </Form>
         </Card>
       </div>
