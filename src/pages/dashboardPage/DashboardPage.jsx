@@ -157,7 +157,7 @@ const DashboardPage = () => {
     setRowData(row_data)
     setIsEdit(true)
     setImage(row_data.image)
-    formProduct.setFieldValue({
+    formProduct.setFieldsValue({
       productName: row_data.productName,
       productPrice: row_data.productPrice,
       ingredients: row_data.ingredients,
