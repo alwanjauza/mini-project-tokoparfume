@@ -5,5 +5,6 @@ query MyQuery {
     profile {
         username
         password
+        isAdmin
     }
 }`
