@@ -1,0 +1,39 @@
+.left-side {
+    padding: 0 0 0 50px;
+}
+
+
+.line-devider {
+    background-color: #cacaca;
+    height: 0.1px;
+}
+
+.right-side {
+    padding: 0 100px 0 0;
+}
+
+.right-side h1 {
+    font-size: 30px;
+}
+
+.price {
+    font-size: 20px;
+}
+
+.right-side Button{
+    background-color: black;
+    color: white;
+    height: 45px;
+    padding: 0 150px 0 150px;
+    border-radius: 0;
+}
+
+.right-side Button:hover{
+    background-color: white;
+    color: black;
+}
+
+.desc-product {
+    padding: 0 0 0 20px;
+    text-align: justify;
+}

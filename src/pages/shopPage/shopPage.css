@@ -1,13 +1,9 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 .shop-page {
+    padding: 40px 0 40px 0;
+    margin: 0 0 0 150px;
     text-align: center;
 }
 
-.shop-page img {
-    width: 300px;
+.shop-page {
+    font-size: 20px;
 }
-
