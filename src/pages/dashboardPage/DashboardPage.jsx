@@ -139,13 +139,15 @@ const DashboardPage = () => {
       render: (_, record) =>
         INITIAL_TABLE_DATA.length >= 1 ? (
           <Space>
-            <a onClick={() => handleEdit(record)}>Edit</a>
+            <Button onClick={() => handleEdit(record)}>Edit</Button>
             <Popconfirm
               title="Sure to delete?"
               arrow={false}
               onConfirm={() => onDelete(record.uuid)}
             >
-              <a>Delete</a>
+            <Button type='primary' danger>
+              Delete
+            </Button>
             </Popconfirm>
           </Space>
         ) : null,
