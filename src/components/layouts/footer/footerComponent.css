@@ -1,5 +1,5 @@
 .footer {
-    background-color: #9d1c1f;
+    background-color: #c52022;
 }
 
 .footer-top{
@@ -12,7 +12,7 @@
     margin: 0 10px 0 10px;
     width: 480px;
     height: 50px;
-    background-color: #9d1c1f;
+    background-color: #c52022;
     border-radius: 0;
 }
 
@@ -20,8 +20,14 @@
     height: 50px;
     background-color: black;
     color: white;
-    border: none;
+    border-color: black;
     border-radius: 0;
+}
+
+.footer-top Button:hover {
+    color: black;
+    background-color: #c52022;
+    border-color: white;
 }
 
 .gap-line {
@@ -41,4 +47,8 @@
 
 .about-layr {
     padding-left: 100px;
+}
+
+.ig-icon {
+    margin-right: 15px;
 }
