@@ -1,0 +1,25 @@
+.checkout-page {
+    margin: 0 350px 0 350px;
+    padding: 40px 0 40px 0;
+}
+
+.checkout-page img {
+    width: 300px;
+}
+
+.head {
+    text-align: center;
+}
+
+.breadcrumb {
+    margin: 0 0 0 36%;
+}
+
+.button-sec {
+    display: flex;
+    justify-content: space-between;
+}
+
+.walink {
+    margin-left: 90px;
+}

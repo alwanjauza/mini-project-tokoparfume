@@ -1,5 +1,5 @@
 import { Button, Col, Input, Row, Typography } from 'antd';
-import { InstagramOutlined } from '@ant-design/icons';
+import { InstagramOutlined, LinkedinOutlined } from '@ant-design/icons';
 import React from 'react';
 import Gap from '../../gap/Gap';
 import { Link } from 'react-router-dom';
@@ -41,8 +41,14 @@ const FooterComponent = () => {
             <br />
             <a href="https://www.instagram.com/alwanjauza/"
             target="_blank"
-            style={styleLink}>
+            style={styleLink}
+            className='ig-icon'>
               <InstagramOutlined />
+            </a>
+            <a href="https://www.linkedin.com/in/alwan-jauza-r-057556275"
+            target='_blank'
+            style={styleLink}>
+            <LinkedinOutlined />
             </a>
             </div>
           </Col>
@@ -64,8 +70,6 @@ const FooterComponent = () => {
             <Link to="/faq" style={styleLink}>FAQ</Link>
             <Gap height={10}/>
             <Link to="/terms-conditions" style={styleLink}>TERMS & CONDITION</Link>
-            <Gap height={10}/>
-            <Link to="/contact" style={styleLink}>CONTACT</Link>
             </div>
           </Col>
         </Row>

@@ -2,3 +2,16 @@
     display: flex;
     justify-content: space-between;
 }
+
+.header-wrapper img {
+    padding-top: 25px;
+    padding-right: 150px;
+}
+
+.menu-item {
+    padding-top: 12px;
+}
+
+.menu-logout {
+    padding-top: 15px;
+}
