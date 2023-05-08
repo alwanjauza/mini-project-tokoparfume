@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import { Button, Card, Form, Input, Modal, Typography, Watermark } from 'antd';
+import { Button, Card, Form, Input, Modal, Typography, Watermark, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -27,24 +27,39 @@ const LoginPage = () => {
   const onLogin = (values) => {
     const profile = [...profileData?.profile];
 
-    const isUser = profile.find((item) => item.username === values.username);
+    const isAdmin = profile?.find(
+      (item) =>
+      item.username === values.username &&
+      item.password === values.password &&
+      item.isAdmin === true
+    )
 
-    const isVerified = JSON.stringify(isUser) === JSON.stringify(values);
+    const isUser = profile?.find(
+      (item) => 
+      item.username === values.username &&
+      item.password === values.password &&
+      item.isAdmin === false
+    )
 
-    if (isVerified) {
-      localStorage.setItem('token', true);
-      navigate('/');
-    } else {
-      Modal.warning({
-        title: 'Login Failed!',
-        content: 'Username/password is not correct',
-        centered: true,
-        onOk() {
-          navigate('/login');
-        },
-      });
+    if (isAdmin || isUser) {
+      localStorage.setItem('token', true)
+      localStorage.setItem('isAdmin', isAdmin ? true : false)
+      message.success({
+        content: 'Login success!',
+        duration: 1
+      })
+      setTimeout(() => {
+        navigate(isAdmin? '/dashboard' : '/')
+      }, 1000)
     }
-  };
+    else{
+      Modal.warning({
+        title: 'Username atau password salah!',
+        content: 'Silahkan coba lagi',
+        centered: true
+      })
+    }
+  }
 
   return (
     <div className='container-center'>
