@@ -21,8 +21,6 @@ const FooterComponent = () => {
           first to know before anyone else, like products, launches and events.
           You can unsubscribe anytime.
         </Text>
-        <Input placeholder="Enter your email address" name="email" />
-        <Button>SUBSCRIBE</Button>
       </div>
       <div className="gap-line" />
       <Gap height={50}/>
