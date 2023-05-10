@@ -21,8 +21,8 @@ const HeaderComponent = () => {
         top: 0,
         zIndex: 1,
         width: '100%',
-        height: '101px',
-        backgroundColor: '#fff',
+        height: '100px',
+        backgroundColor: '#EFEFEF',
       }}
     >
       <div className="header-wrapper">
@@ -34,6 +34,9 @@ const HeaderComponent = () => {
           disabledOverflow
           items={MENU_ITEM}
           className='menu-item'
+          style={{
+            backgroundColor: '#EFEFEF',
+          }}
         />
 
         <Link to="/">
