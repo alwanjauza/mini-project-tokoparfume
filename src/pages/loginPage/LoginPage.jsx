@@ -62,8 +62,9 @@ const LoginPage = () => {
   }
 
   return (
-    <div className='container-center'>
-        <Card title="WELCOME" bodyStyle={{ width: '400px' }}>
+    <div className="body-container">
+      <div className="container-center">
+      <Card title={<img src={IconPerfume} alt='icon' style={{height: 40, padding: 10}}/>} bodyStyle={{ width: '400px' }}>
           <Gap height={20} />
 
           <Form form={form} onFinish={onLogin}>
@@ -100,10 +101,12 @@ const LoginPage = () => {
             >
                 Login
             </Button>
+            <Gap height={15}/>
             <Text>Dont have an account?</Text><Link to='/register'>Sign up here</Link>
           </Form>
         </Card>
       </div>
+    </div>
   );
 };
 

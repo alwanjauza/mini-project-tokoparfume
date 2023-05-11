@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GET_PROFILE } from '../loginPage/query/login-query';
 import { ADD_PROFILE } from './query/register-query';
 import Gap from '../../components/gap/Gap';
+import { IconPerfume } from '../../assets';
 
 const RegisterPage = () => {
   const [form] = Form.useForm()
@@ -63,7 +64,7 @@ const RegisterPage = () => {
   return (
     <>
       <div className="container-center">
-      <Card title="WELCOME" bodyStyle={{ width: '400px' }}>
+      <Card title={<img src={IconPerfume} alt='icon' style={{height: 40, padding: 10}}/>} bodyStyle={{ width: '400px' }}>
           <Gap height={20} />
 
           <Form form={form} onFinish={onRegister}>
@@ -125,19 +126,6 @@ const RegisterPage = () => {
                 placeholder="Password"
               />
             </Form.Item>
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your password again!',
-                },
-              ]}
-            >
-              <Input.Password
-                prefix={<LockOutlined />}
-                placeholder="Re-Password"
-              />
-            </Form.Item>
             <Button
               type="primary"
               htmlType="submit"
@@ -146,6 +134,7 @@ const RegisterPage = () => {
             >
               Create My Account
             </Button>
+            <Gap height={15}/>
             <Text>Already a user?</Text><Link to='/login'>Login</Link>
           </Form>
         </Card>
