@@ -1,8 +1,10 @@
-import { Layout, Menu } from 'antd';
+import { Button, Dropdown, Layout, Menu, Space } from 'antd';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MENU_ITEM } from '../Constant';
-import './headerComponent.css'
+import './headerComponent.css';
+import { IconPerfume } from '../../../assets';
+import { UserOutlined } from '@ant-design/icons';
 
 const HeaderComponent = () => {
   const path = window.location.pathname;
@@ -19,30 +21,35 @@ const HeaderComponent = () => {
         top: 0,
         zIndex: 1,
         width: '100%',
+        height: '101px',
+        backgroundColor: '#fff',
       }}
     >
       <div className="header-wrapper">
-        <Link to="/">
-          <div
-            style={{
-              float: 'left',
-              width: 120,
-              height: 31,
-              margin: '16px 24px 16px 0',
-              background: 'rgba(255, 255, 255, 0.2)',
-            }}
-            onClick={() => setCurrent('')}
-          />
-        </Link>
         <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={['1']}
-        onClick={onClick}
-        selectedKeys={[current]}
-        disabledOverflow
-        items={MENU_ITEM}
+          mode="horizontal"
+          defaultSelectedKeys={['1']}
+          onClick={onClick}
+          selectedKeys={[current]}
+          disabledOverflow
+          items={MENU_ITEM}
+          className='menu-item'
         />
+
+        <Link to="/">
+          <img src={IconPerfume} alt="Icon" height={73}/>
+        </Link>
+
+        <Link to="/loginPage" className='menu-logout'>
+        <Button
+          type="primary"
+          onClick={() => {
+            localStorage.removeItem('token');
+          }}
+        >
+          LOGOUT
+        </Button>
+      </Link>
       </div>
     </Header>
   );
