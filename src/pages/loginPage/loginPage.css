@@ -1,3 +1,9 @@
+body {
+    height: 100vh;
+    background: url(../../assets/img/MidnightHaze.png) 50% no-repeat;
+    background-size: cover;
+}
+
 .container-center{
     margin: 0;
     position: absolute;
