@@ -21,8 +21,8 @@ const HeaderComponent = () => {
         top: 0,
         zIndex: 1,
         width: '100%',
-        height: '101px',
-        backgroundColor: '#fff',
+        height: '100px',
+        backgroundColor: '#EFEFEF',
       }}
     >
       <div className="header-wrapper">
@@ -34,13 +34,16 @@ const HeaderComponent = () => {
           disabledOverflow
           items={MENU_ITEM}
           className='menu-item'
+          style={{
+            backgroundColor: '#EFEFEF',
+          }}
         />
 
         <Link to="/">
           <img src={IconPerfume} alt="Icon" height={73}/>
         </Link>
 
-        <Link to="/loginPage" className='menu-logout'>
+        <Link to="/login" className='menu-logout'>
         <Button
           type="primary"
           onClick={() => {

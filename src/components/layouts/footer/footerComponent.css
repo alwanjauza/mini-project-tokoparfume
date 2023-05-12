@@ -1,40 +1,17 @@
 .footer {
-    background-color: #c52022;
+    background-color: #EFEFEF;
 }
 
 .footer-top{
     margin: 50px 320px 30px 320px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.footer-top Input{
-    margin: 0 10px 0 10px;
-    width: 480px;
-    height: 50px;
-    background-color: #c52022;
-    border-radius: 0;
-}
-
-.footer-top Button {
-    height: 50px;
-    background-color: black;
-    color: white;
-    border-color: black;
-    border-radius: 0;
-}
-
-.footer-top Button:hover {
-    color: black;
-    background-color: #c52022;
-    border-color: white;
+    text-align: center;
 }
 
 .gap-line {
     margin: 0;
     padding: 0;
     height: 1px;
-    background-color: #970709;
+    background-color: #DBDBDB;
 }
 
 .footer-mid {

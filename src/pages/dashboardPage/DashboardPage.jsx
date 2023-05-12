@@ -6,6 +6,7 @@ import {
   Image,
   Input,
   InputNumber,
+  Modal,
   Popconfirm,
   Space,
   Table,
@@ -26,6 +27,7 @@ import { uploaderConfig } from '../../config/uploaderConfig';
 import Gap from '../../components/gap/Gap';
 import { UploadOutlined } from '@ant-design/icons';
 import LoadingComponents from '../../components/layouts/loadingComponents/LoadingComponents/LoadingComponents';
+import currency from 'currency.js';
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -41,6 +43,24 @@ const DashboardPage = () => {
   const [formProduct] = Form.useForm();
   const [image, setImage] = useState('');
   const [fileList, setFileList] = useState('');
+  const [open, setOpen] = useState(false);
+  const showModal = () => {
+    setOpen(true);
+  };
+  const handleOk = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setOpen(false);
+    }, 3000);
+  };
+  const handleCancel2 = () => {
+    setOpen(false);
+  };
+
+  const panelStyle = {
+  background: '#fff',
+};
 
   // Image Change
   const onImageChange = ({ fileList: newFileList }) => {
@@ -145,9 +165,9 @@ const DashboardPage = () => {
               arrow={false}
               onConfirm={() => onDelete(record.uuid)}
             >
-            <Button type='primary' danger>
-              Delete
-            </Button>
+              <Button type="primary" danger>
+                Delete
+              </Button>
             </Popconfirm>
           </Space>
         ) : null,
@@ -156,16 +176,17 @@ const DashboardPage = () => {
 
   // Handle edit button
   const handleEdit = (row_data) => {
-    setRowData(row_data)
-    setIsEdit(true)
-    setImage(row_data.image)
+    showModal()
+    setRowData(row_data);
+    setIsEdit(true);
+    setImage(row_data.image);
     formProduct.setFieldsValue({
       productName: row_data.productName,
       productPrice: row_data.productPrice,
       ingredients: row_data.ingredients,
       desc: row_data.desc,
-    })
-  }
+    });
+  };
 
   // Handle cancel button
   const handleCancel = () => {
@@ -193,7 +214,7 @@ const DashboardPage = () => {
           content: `${err?.message}`,
         });
       },
-      onCompleted: () => handleCancel(),
+      onCompleted: () => handleCancel2(),
     });
   };
 
@@ -254,10 +275,19 @@ const DashboardPage = () => {
   }, [productError]);
 
   return (
-    <div>
+    <div className='dashboard-page'>
       <Title>Product List</Title>
 
-      <Form
+      <Button type="primary" onClick={showModal}>
+        Add Product
+      </Button>
+      <Modal
+      open={open}
+      onOk={handleOk}
+      onCancel={handleCancel2}
+      width={680}
+      >
+<Form
         name="form-product"
         form={formProduct}
         layout="horizontal"
@@ -314,7 +344,9 @@ const DashboardPage = () => {
             <Button
               icon={<UploadOutlined />}
               type={!image ? 'dashed' : 'default'}
-            />
+            >
+              Upload Product Image
+            </Button>
           </Upload>
 
           {isLoadingUpload ? (
@@ -381,7 +413,7 @@ const DashboardPage = () => {
           </Button>
         )}
       </Form>
-
+      </Modal>
       <Gap height={20} />
 
       <Table

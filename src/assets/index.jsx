@@ -12,6 +12,7 @@ import MidnightHazeCarousel from './img/MidnightHaze-Carousel.png'
 import SecondSkinCarousel from './img/SecondSkin-Carousel.png'
 import IconPerfume from './img/Icon.svg'
 import WaLink from './img/wa-link.png'
+import Story from './img/Story.jpg'
 
 export {
     GetNaked,
@@ -27,5 +28,6 @@ export {
     MidnightHazeCarousel,
     SecondSkinCarousel,
     IconPerfume,
-    WaLink
+    WaLink,
+    Story
 }
