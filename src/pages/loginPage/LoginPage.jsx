@@ -49,7 +49,7 @@ const LoginPage = () => {
         duration: 1
       })
       setTimeout(() => {
-        navigate(isAdmin? '/dashboard' : '/')
+        navigate(isAdmin? '/order' : '/')
       }, 1000)
     }
     else{

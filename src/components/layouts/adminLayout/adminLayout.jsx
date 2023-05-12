@@ -1,50 +1,45 @@
-import { Layout } from 'antd';
+import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { Button, Layout, Menu, theme } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import React from 'react';
+import { IconPerfume } from '../../../assets';
+import { SIDE_MENU } from './Constant';
+import { Link } from 'react-router-dom';
+import Gap from '../../gap/Gap';
+import './adminlayout.css'
 
 const AdminLayout = ({children}) => {
-    const { Content } = Layout
-    
+    const { Header, Content, Footer, Sider } = Layout;
+
     return (
-        <Layout>
+      <Layout>
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
+        style={{backgroundColor: '#EFEFEF'}}
       >
-        <div className="logo" />
+        <div className="logo">
+        <img src={IconPerfume} alt="Icon" height={30}/>
+        </div>
+        <div className="sider-wrapper">
         <Menu
-          theme="dark"
           mode="inline"
-          defaultSelectedKeys={['4']}
-          items={[UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
-            (icon, index) => ({
-              key: String(index + 1),
-              icon: React.createElement(icon),
-              label: `nav ${index + 1}`,
-            }),
-          )}
+          defaultSelectedKeys={['/order']}
+          style={{backgroundColor: '#EFEFEF'}}
+          items={SIDE_MENU}
         />
+      </div>
       </Sider>
       <Layout>
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        />
-        {children}
+        
+          {children}
+
         <Footer
           style={{
             textAlign: 'center',
           }}
         >
-          Ant Design ©2023 Created by Ant UED
+          Proudly present by Alwan Jauza Rosyad
         </Footer>
       </Layout>
     </Layout>

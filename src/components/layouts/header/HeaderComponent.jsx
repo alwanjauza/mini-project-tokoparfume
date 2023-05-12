@@ -43,7 +43,7 @@ const HeaderComponent = () => {
           <img src={IconPerfume} alt="Icon" height={73}/>
         </Link>
 
-        <Link to="/loginPage" className='menu-logout'>
+        <Link to="/login" className='menu-logout'>
         <Button
           type="primary"
           onClick={() => {

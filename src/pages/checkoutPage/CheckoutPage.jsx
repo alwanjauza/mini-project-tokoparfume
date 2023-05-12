@@ -11,6 +11,7 @@ import {
   Row,
   Tooltip,
   Typography,
+  message,
 } from 'antd';
 import { Link } from 'react-router-dom';
 import {
@@ -21,28 +22,56 @@ import {
 } from '@ant-design/icons';
 import { IconPerfume, WaLink } from '../../assets';
 import Gap from '../../components/gap/Gap';
+import { useMutation } from '@apollo/client';
+import { ADD_ORDERS, GET_ORDERS } from './query/checkout-query';
 
 const CheckoutPage = () => {
-  const [loading, setLoading] = useState(false)
-  const [open, setOpen] = useState(false)
+  const [ waMessage, setWaMessage] = useState('')
   const { Text } = Typography;
-  const [form] = Form.useForm();
+  const [formCheckout] = Form.useForm();
   const { TextArea } = Input;
   const inputStyle = {
     width: '95%',
   };
-  const showModal = () => {
-    setOpen(true);
+
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    const firstName = e.target.firstName.value
+    const lastName = e.target.lastName.value
+    const address = e.target.address.value
+    const postalCode = e.target.postalCode.value
+    const phone = e.target.phone.value
+
+    setWaMessage(`Hey, ${firstName} ${lastName} ${address} ${postalCode} ${phone}`)
+
+    console.log(setWaMessage)
+  }
+
+  // ADD DATA
+  const [addOrders, { loading: loadingAddOrders }] = useMutation(ADD_ORDERS, {
+    refetchQueries: [GET_ORDERS],
+  });
+
+  const handleCompleted = () => {
+    window.open('https://wa.link/fvglji');
   };
-  const handleOk = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setOpen(false);
-    }, 1000);
-  };
-  const handleCancle = () => {
-    setOpen(false);
+
+  const onAdd = (values) => {
+    addOrders({
+      variables: {
+        object: {
+          ...values,
+        },
+      },
+      onError: (err) => {
+        message.open({
+          type: "error",
+          content: `${err?.message}`,
+        });
+      },
+      onCompleted: () => handleCompleted()
+    });
   };
 
   return (
@@ -81,7 +110,7 @@ const CheckoutPage = () => {
         </div>
         <Gap height={30} />
         <h1>Shipping address</h1>
-        <Form name="myForm" form={form} layout="vertical">
+        <Form name="myForm" form={formCheckout} layout="vertical" onFinish={onAdd}>
           <Row>
             <Col span={12}>
               <Form.Item name="firstName" label="First Name" style={inputStyle}>
@@ -117,7 +146,7 @@ const CheckoutPage = () => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Postal Code">
+              <Form.Item label="Postal Code" name='postalCode'>
                 <InputNumber style={{ width: '100%' }} />
               </Form.Item>
             </Col>
@@ -144,25 +173,14 @@ const CheckoutPage = () => {
                 <LeftOutlined /> Return To Shop
               </Text>
             </Link>
-            <Button onClick={showModal}>Continue to payment</Button>
+            <Button
+              htmlType="submit"
+              loading={loadingAddOrders}
+            >
+              Continue to payment
+            </Button>
           </div>
         </Form>
-        <Modal
-              open={open}
-              title="Payment"
-              onOk={handleOk}
-              onCancel={handleCancle}
-              footer={[
-                <Button onClick={handleCancle}>
-                  Back
-                </Button>,
-                <a href="https://wa.link/fvglji" target="_blank">
-                  <Button>Continue to payment</Button>
-                </a>,
-              ]}
-            >
-              <img src={WaLink} alt='barcode' className='walink'/>
-            </Modal>
       </div>
     </>
   );

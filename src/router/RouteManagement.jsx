@@ -14,9 +14,12 @@ import RegisterPage from '../pages/registerPage/RegisterPage';
 import DashboardPage from '../pages/dashboardPage/DashboardPage';
 import CheckoutPage from '../pages/checkoutPage/CheckoutPage';
 import ProductDetil from '../pages/shopPage/components/ProductDetil';
+import AdminLayout from '../components/layouts/adminLayout/adminLayout';
+import OrderPage from '../pages/ordersPage/OrderPage';
 
 const RouteManagement = () => {
     const token = localStorage.getItem('token')
+    const isAdmin = localStorage.getItem('isAdmin')
     const navigate = useNavigate()
 
     useEffect (()=> {
@@ -32,20 +35,28 @@ const RouteManagement = () => {
                     <Route path='/login' element={<LoginPage/>} />
                     <Route path='/register' element={<RegisterPage/>} />
                 </Routes>
+            ) : (                
+            token && isAdmin === 'true' ?(
+                <AdminLayout>
+                <Routes>
+                    <Route path='/dashboard' element={<DashboardPage/>}/>
+                    <Route path='/order' element={<OrderPage/>}/>
+                </Routes>
+                </AdminLayout>
             ) : (
                 <LayoutComponent>
-                    <Routes>
-                        <Route path='/' element={<HomePage/>} />
-                        <Route path='/shop' element={<ShopPage/>} />
-                        <Route path='/shop/:uuid' element={<ProductDetil/>}/>
-                        <Route path='/our-story' element={<StoryPage/>} />
-                        <Route path='/creation' element={<CreationPage/>} />
-                        <Route path='/faq' element={<FaqPage/>} />
-                        <Route path='/terms-conditions' element={<TermsConditionPage/>} />
-                        <Route path='/dashboard' element={<DashboardPage/>}/>
-                        <Route path='/checkout' element={<CheckoutPage/>}/>
-                    </Routes>
-                </LayoutComponent>
+                <Routes>
+                    <Route path='/' element={<HomePage/>} />
+                    <Route path='/shop' element={<ShopPage/>} />
+                    <Route path='/shop/:uuid' element={<ProductDetil/>}/>
+                    <Route path='/our-story' element={<StoryPage/>} />
+                    <Route path='/creation' element={<CreationPage/>} />
+                    <Route path='/faq' element={<FaqPage/>} />
+                    <Route path='/terms-conditions' element={<TermsConditionPage/>} />
+                    <Route path='/checkout' element={<CheckoutPage/>}/>
+                </Routes>
+            </LayoutComponent>
+            )
             )}
         </Suspense>
     );
